@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace CSharpAllSpice.Repositories;
 
-namespace CSharpAllSpice.Repositories
+public class RecipesRepository
 {
-    public class RecipesRepository
+    private readonly IDbConnection _db;
+
+    public RecipesRepository(IDbConnection db)
     {
-        
+        _db = db;
     }
 }
