@@ -56,4 +56,28 @@ public class RecipesRepository
         }, new { id }).FirstOrDefault();
         return recipe;
     }
+
+    internal void RemoveRecipe(int id)
+    {
+        string sql = @"
+        
+        DELETE FROM recipes WHERE id = @id;
+        ";
+        int rows = _db.Execute(sql, new { id });
+    }
+
+    internal int UpdateRecipe(Recipe update)
+    {
+        string sql = @"
+       UPDATE recipes 
+       SET
+       title = @title,
+       instructions = @instructions,
+       img = @img,
+       category = @category
+       WHERE id = @id;
+    ";
+        int rows = _db.Execute(sql, update);
+        return rows;
+    }
 }
