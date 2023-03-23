@@ -30,7 +30,7 @@ VALUES
 
 SELECT
 rec.*,
-acct.*
+acct.name AS creatorName
 FROM recipes rec
 JOIN accounts acct ON rec.creatorId = acct.id;
 
@@ -39,7 +39,7 @@ JOIN accounts acct ON rec.creatorId = acct.id;
 
 CREATE TABLE IF NOT EXISTS ingredients(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  creatorId VARCHAR(50) NOT,
+  creatorId VARCHAR(50) NOT NULL,
   recipeId INT NOT NULL,
   name VARCHAR(50),
   quantity VARCHAR(100), 
