@@ -28,6 +28,21 @@ public class RecipesController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Recipe>> Find(int id)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            Recipe recipe = _recipesService.GetOne(id, userInfo.Id);
+            return Ok(recipe);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
     [HttpPost]
     [Authorize]

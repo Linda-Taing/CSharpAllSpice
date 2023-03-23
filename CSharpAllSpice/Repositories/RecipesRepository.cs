@@ -40,4 +40,20 @@ public class RecipesRepository
         }).ToList();
         return recipes;
     }
+    internal Recipe GetOne(int id)
+    {
+        string sql = @"
+        SELECT
+        rec.*,
+        acct.*
+        FROM recipes rec
+        JOIN accounts acct ON rec.creatorId = acct.id
+        WHERE rec.id = @id;";
+        Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, prof) =>
+        {
+            recipe.Creator = prof;
+            return recipe;
+        }, new { id }).FirstOrDefault();
+        return recipe;
+    }
 }

@@ -21,4 +21,12 @@ public class RecipesService
         recipes = recipes.FindAll(a => a.CreatorId == userId);
         return recipes;
     }
+
+    internal Recipe GetOne(int id, string userId)
+    {
+        Recipe recipe = _repo.GetOne(id);
+        if (recipe == null) throw new Exception("Recipe is not there1");
+        if (recipe.CreatorId != userId) throw new Exception("This is not your recipe!");
+        return recipe;
+    }
 }
