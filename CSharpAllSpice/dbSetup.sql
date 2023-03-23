@@ -39,10 +39,12 @@ JOIN accounts acct ON rec.creatorId = acct.id;
 
 CREATE TABLE IF NOT EXISTS ingredients(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50),
-  quantity INT NOT NULL DEFAULT 0, 
+  creatorId VARCHAR(50) NOT NULL,
   recipeId INT NOT NULL,
+  name VARCHAR(50),
+  quantity VARCHAR(100), 
 
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
 
@@ -51,12 +53,13 @@ ALTER TABLE ingredients;
 DROP TABLE ingredients;
 
 INSERT INTO ingredients
-(name, quantity, `recipeId`)
+(name, quantity, recipeId, creatorId)
 VALUES
-('Bread and Butter', '2', '1');
+('Toasted Bread', '2 slices of bread and heaps of butter', '1', '640538132afd6827951b3197');
 
 SELECT
 *
 FROM ingredients ingred
+JOIN accounts acct ON acct.id = ingred.creatorId
 JOIN recipes rec ON rec.id = ingred.recipeId
 WHERE recipeId = 1;

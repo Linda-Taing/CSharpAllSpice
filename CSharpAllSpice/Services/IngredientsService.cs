@@ -1,12 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace CSharpAllSpice.Services;
 
-namespace CSharpAllSpice.Services
+public class IngredientsService
 {
-    public class IngredientsService
+    private readonly IngredientsRepository _repo;
+
+    public IngredientsService(IngredientsRepository repo)
     {
-        
+        _repo = repo;
+    }
+
+    internal Ingredient CreateIngredient(Ingredient ingredientData)
+    {
+        Ingredient ingredient = _repo.CreateIngredient(ingredientData);
+        return ingredient;
+    }
+
+    internal List<Ingredient> GetAll()
+    {
+        List<Ingredient> ingredients = _repo.GetAll();
+        return ingredients;
     }
 }
