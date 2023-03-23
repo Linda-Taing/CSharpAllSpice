@@ -14,4 +14,11 @@ public class RecipesService
         Recipe recipe = _repo.CreateRecipe(recipeData);
         return recipe;
     }
+
+    internal List<Recipe> Get(string userId)
+    {
+        List<Recipe> recipes = _repo.GetAll();
+        recipes = recipes.FindAll(a => a.CreatorId == userId);
+        return recipes;
+    }
 }

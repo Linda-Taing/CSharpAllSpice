@@ -13,6 +13,21 @@ public class RecipesController : ControllerBase
         _auth = auth;
 
     }
+    [HttpGet]
+    async public Task<ActionResult<List<Recipe>>> Find()
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<Recipe> recipes = _recipesService.Get(userInfo?.Id);
+            return Ok(recipes);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
     [HttpPost]
     [Authorize]
