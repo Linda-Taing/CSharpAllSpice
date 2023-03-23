@@ -33,5 +33,9 @@ public class IngredientsRepository
         List<Ingredient> ingredients = _db.Query<Ingredient>(sql).ToList();
         return ingredients;
     }
+    [HttpDelete("{id}")]
+    [Authorize]
+
+
 
 }
