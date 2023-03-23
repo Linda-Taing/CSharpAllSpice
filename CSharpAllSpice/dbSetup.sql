@@ -19,11 +19,44 @@ CREATE TABLE IF NOT EXISTS recipes(
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
 
-ALTER TABLE recipes
+ALTER TABLE recipes;
 
 DROP Table recipes;
 
 INSERT INTO recipes 
 (title, instructions, img, category, creatorId)
 VALUES
-('Buttered Toast', 'Get 2 slices of bread. Pop them in the toaster. Get your butter as much or as little as you like... Toast Pops and you can spread the butter on to the warm delicious toast. Now simply enjoy.', 'https://media.istockphoto.com/id/172413173/photo/toast-and-butter.jpg?b=1&s=170667a&w=0&k=20&c=KDDcmP7ezM7HmWjZfCmZDjCRGDEBVE359_YiI7T4bUQ=', 'Breakfast', '640538132afd6827951b3197')
+('Buttered Toast', 'Get 2 slices of bread. Pop them in the toaster. Get your butter as much or as little as you like... Toast Pops and you can spread the butter on to the warm delicious toast. Now simply enjoy.', 'https://media.istockphoto.com/id/172413173/photo/toast-and-butter.jpg?b=1&s=170667a&w=0&k=20&c=KDDcmP7ezM7HmWjZfCmZDjCRGDEBVE359_YiI7T4bUQ=', 'Breakfast', '640538132afd6827951b3197');
+
+SELECT
+rec.*,
+acct.*
+FROM recipes rec
+JOIN accounts acct ON rec.creatorId = acct.id;
+
+
+-- <--- INGREDIENTS SECTION---> --
+
+CREATE TABLE IF NOT EXISTS ingredients(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  quantity INT NOT NULL DEFAULT 0, 
+  recipeId INT NOT NULL,
+
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+)default charset utf8 COMMENT '';
+
+ALTER TABLE ingredients;
+
+DROP TABLE ingredients;
+
+INSERT INTO ingredients
+(name, quantity, `recipeId`)
+VALUES
+('Bread and Butter', '2', '1');
+
+SELECT
+*
+FROM ingredients ingred
+JOIN recipes rec ON rec.id = ingred.recipeId
+WHERE recipeId = 1;
