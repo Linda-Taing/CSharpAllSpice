@@ -1,6 +1,8 @@
 <template>
-  <h1>ALL SPICE</h1>
-  {{ recipes }}
+  <div v-for="r in recipes">
+    Recipe
+    <RecipeCard :recipe="r" />
+  </div>
 </template>
 
 <script>
@@ -15,22 +17,20 @@ export default {
     async function getAllRecipes() {
       try {
         await recipesService.getAllRecipes();
-      } catch (error) {
+      }
+      catch (error) {
         logger.log(error);
-        Pop.error(error, '[GETTING ALL SPICES]');
+        Pop.error(error, "[GETTING ALL SPICES]");
       }
     }
     onMounted(() => {
       getAllRecipes();
-    })
+    });
     return {
       recipes: computed(() => AppState.recipes),
-
-
-
       // <------END OF RETURN----->
-    }
-  }
+    };
+  },
 }
 </script>
 

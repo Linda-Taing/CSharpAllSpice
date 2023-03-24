@@ -8,7 +8,7 @@ class RecipesService {
         const res = await api.get('api/recipes')
         logger.log('[GETTING RECIPES]', res.data)
         AppState.recipes = res.data.map(r => new Recipe(r))
-        logger.log(AppState.recipes)
+        logger.log('this is the service', AppState.recipes)
 
     }
 }

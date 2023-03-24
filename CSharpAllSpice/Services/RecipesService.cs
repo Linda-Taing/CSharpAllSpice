@@ -35,7 +35,6 @@ public class RecipesService
     internal List<Recipe> Find(string userId)
     {
         List<Recipe> recipes = _repo.GetAll();
-        recipes = recipes.FindAll(a => a.CreatorId == userId);
         return recipes;
     }
 

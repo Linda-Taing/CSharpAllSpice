@@ -1,6 +1,6 @@
 <template>
     <div class="component">
-        {{ recipes }}
+        {{ recipe }}
 
     </div>
 </template>
@@ -11,7 +11,7 @@ import { Recipe } from '../models/Recipe.js';
 
 export default {
     props: {
-        recipes: {
+        recipe: {
             type: Recipe,
             required: true
         }
