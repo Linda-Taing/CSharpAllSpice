@@ -8,13 +8,15 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
+
+--<------ RECIPES SECTION ------>----
 CREATE TABLE IF NOT EXISTS recipes(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  instructions VARCHAR(500),
-  img VARCHAR(500),
-  category VARCHAR(255),
-  creatorId VARCHAR(50),
+  title VARCHAR(255) NOT NULL,
+  instructions VARCHAR(500) NOT NULL,
+  img VARCHAR(500) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  creatorId VARCHAR(50) NOT NULL,
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
@@ -41,8 +43,8 @@ CREATE TABLE IF NOT EXISTS ingredients(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   creatorId VARCHAR(50) NOT NULL,
   recipeId INT NOT NULL,
-  name VARCHAR(50),
-  quantity VARCHAR(100), 
+  name VARCHAR(50) NOT NULL,
+  quantity VARCHAR(100) NOT NULL, 
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
@@ -63,3 +65,32 @@ FROM ingredients ingred
 JOIN accounts acct ON acct.id = ingred.creatorId
 JOIN recipes rec ON rec.id = ingred.recipeId
 WHERE recipeId = 1;
+
+
+-- <---- FAVORITES SECTION ----->---
+
+CREATE TABLE IF NOT EXISTS favorites(
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  accountId VARCHAR(255) NOT NULL,
+  recipeId INT NOT NULL,
+
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+)default charset utf8 COMMENT '';
+
+INSERT INTO favorites
+(`recipeId`, `accountId`)
+VALUES
+(1, '640538132afd6827951b3197');
+
+-- GETTING FAVORITES FOR ACCOUNT--
+SELECT
+fave.*,
+acct.*,
+rec.*,
+creator.name AS creatorName
+FROM favorites fave
+JOIN accounts acct ON fave.accountId = acct.id
+JOIN recipes rec ON fave.recipeId = rec.id
+JOIN accounts creator On rec.creatorId = creator.id
+WHERE acct.id = "640538132afd6827951b3197";
