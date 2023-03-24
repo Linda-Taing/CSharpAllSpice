@@ -21,10 +21,11 @@ public class FavoritesService
         return favoritedRecipes;
     }
 
-    internal string removeFavorite(int id, string userInfo)
+    internal string removeFavorite(int id, string userId)
     {
-        List<Favorite> favorite = _repo.Find(id);
+        Favorite favorite = _repo.FindFavorite(id);
         if (favorite == null) throw new Exception($"You didn't favorite this {id}!");
+        if (favorite.AccountId != userId) throw new Exception($"No favorite with that {id}");
         _repo.RemoveFavorite(id);
         return $"This is no longer your favorite recipe.";
     }

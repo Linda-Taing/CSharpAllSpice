@@ -40,7 +40,7 @@ public class IngredientsRepository
         string sql = @"
        SELECT
        ingred.*
-       From ingredients ingred
+       FROM ingredients ingred
        WHERE ingred.id = @recipeId;
        ";
         Ingredient ingredient = _db.Query<Ingredient>(sql, new { recipeId }).FirstOrDefault();

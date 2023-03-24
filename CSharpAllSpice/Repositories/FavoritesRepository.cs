@@ -23,11 +23,17 @@ public class FavoritesRepository
         return favoriteData;
     }
 
-    internal List<Favorite> Find(int id)
+    internal Favorite FindFavorite(int id)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        SELECT
+        fave.*
+        FROM favorites fave
+        WHERE fave.id = @id;
+        ";
+        Favorite favorite = _db.Query<Favorite>(sql, new { id }).FirstOrDefault();
+        return favorite;
     }
-
     internal List<FavoriteRecipe> GetMyFavorites(string accountId)
     {
         string sql = @"
