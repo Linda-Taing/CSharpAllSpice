@@ -43,7 +43,7 @@ public class IngredientsController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    [HttpDeleteAttribute("{id}")]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<ActionResult<string>> RemoveIngredient(int id)
     {

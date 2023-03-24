@@ -31,8 +31,20 @@ public class IngredientsRepository
        FROM ingredients ingred
        WHERE ingred.recipeId = @recipeId;
         ";
-        List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
-        return ingredients;
+        List<Ingredient> ingredient = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
+        return ingredient;
+    }
+
+    internal Ingredient FindIngredient(int recipeId)
+    {
+        string sql = @"
+       SELECT
+       ingred.*
+       From ingredients ingred
+       WHERE ingred.id = @recipeId;
+       ";
+        Ingredient ingredient = _db.Query<Ingredient>(sql, new { recipeId }).FirstOrDefault();
+        return ingredient;
     }
 
     internal List<Ingredient> GetAll()
@@ -49,7 +61,7 @@ public class IngredientsRepository
     internal void RemoveIngredient(int recipeId)
     {
         string sql = @"
-        DELETE FROM ingredients WHERE recipeId =@recipeId;
+        DELETE FROM ingredients WHERE id = @recipeId;
         ";
         int rows = _db.Execute(sql, new { recipeId });
     }
