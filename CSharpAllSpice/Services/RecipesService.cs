@@ -3,10 +3,12 @@ namespace CSharpAllSpice.Services;
 public class RecipesService
 {
     private readonly RecipesRepository _repo;
+    private readonly FavoritesService _favoritesService;
 
-    public RecipesService(RecipesRepository repo)
+    public RecipesService(RecipesRepository repo, FavoritesService favoritesService)
     {
         _repo = repo;
+        _favoritesService = favoritesService;
     }
 
     internal Recipe UpdateRecipe(int id, Recipe updateData, Account userInfo)
@@ -44,6 +46,7 @@ public class RecipesService
         if (recipe.CreatorId != userId) throw new Exception("This is not your recipe!");
         return recipe;
     }
+
 
     internal string removeRecipe(int id, string userInfo)
     {

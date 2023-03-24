@@ -23,6 +23,11 @@ public class FavoritesRepository
         return favoriteData;
     }
 
+    internal List<Favorite> Find(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     internal List<FavoriteRecipe> GetMyFavorites(string accountId)
     {
         string sql = @"
@@ -43,5 +48,14 @@ public class FavoritesRepository
 
         }, new { accountId }).ToList();
         return favoritedRecipes;
+    }
+
+    internal void RemoveFavorite(int id)
+    {
+        string sql = @"
+       DELETE FROM favorites
+       WHERE id = @id;
+       ";
+        _db.Execute(sql, new { id });
     }
 }

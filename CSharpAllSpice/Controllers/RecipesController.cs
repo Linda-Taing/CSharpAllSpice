@@ -5,14 +5,16 @@ namespace CSharpAllSpice.Controllers;
 public class RecipesController : ControllerBase
 {
     private readonly RecipesService _recipesService;
+    private readonly FavoritesService _favoritesService;
     private readonly Auth0Provider _auth;
     private readonly IngredientsService _ingredientsService;
 
-    public RecipesController(RecipesService recipesService, Auth0Provider auth, IngredientsService ingredientsService)
+    public RecipesController(RecipesService recipesService, Auth0Provider auth, IngredientsService ingredientsService, FavoritesService favoritesService)
     {
         _recipesService = recipesService;
         _auth = auth;
         _ingredientsService = ingredientsService;
+        _favoritesService = favoritesService;
     }
     [HttpGet]
     async public Task<ActionResult<List<Recipe>>> Find()
@@ -92,8 +94,6 @@ public class RecipesController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
-
 
     [HttpGet("{id}/ingredients")]
     public ActionResult<List<Ingredient>> FindIngredientById(int id)
