@@ -78,6 +78,8 @@ CREATE TABLE IF NOT EXISTS favorites(
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
 
+DROP TABLE favorites;
+
 INSERT INTO favorites
 (`recipeId`, `accountId`)
 VALUES

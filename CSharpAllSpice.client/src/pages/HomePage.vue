@@ -1,12 +1,14 @@
 <template>
   <h1>ALL SPICE</h1>
+  {{ recipes }}
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { recipesService } from '../services/RecipesService.js'
+import { AppState } from '../AppState.js';
 
 export default {
   setup() {
@@ -22,6 +24,7 @@ export default {
       getAllRecipes();
     })
     return {
+      recipes: computed(() => AppState.recipes),
 
 
 

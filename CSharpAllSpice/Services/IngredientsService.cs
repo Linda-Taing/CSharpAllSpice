@@ -31,7 +31,7 @@ public class IngredientsService
     internal string removeIngredient(int recipeId, string userId)
     {
         Ingredient ingredient = _repo.FindIngredient(recipeId);
-        if (ingredient.CreatorId != userId) throw new Exception($"No ingredient with that {recipeId}.");
+        if (ingredient.CreatorId != userId) throw new Exception($"Not ingredient with that {recipeId} for you to delete.");
         _repo.RemoveIngredient(recipeId);
         return "Your ingredient has been deleted.";
 
