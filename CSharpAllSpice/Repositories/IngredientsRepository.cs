@@ -46,5 +46,11 @@ public class IngredientsRepository
         return ingredients;
     }
 
-
+    internal void RemoveIngredient(int recipeId)
+    {
+        string sql = @"
+        DELETE FROM ingredients WHERE recipeId =@recipeId;
+        ";
+        int rows = _db.Execute(sql, new { recipeId });
+    }
 }

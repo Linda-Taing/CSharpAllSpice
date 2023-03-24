@@ -40,7 +40,7 @@ public class RecipesService
     internal Recipe Find(int id, string userId)
     {
         Recipe recipe = _repo.GetOne(id);
-        if (recipe == null) throw new Exception("Recipe is not there1");
+        if (recipe == null) throw new Exception("Recipe is not there!");
         if (recipe.CreatorId != userId) throw new Exception("This is not your recipe!");
         return recipe;
     }

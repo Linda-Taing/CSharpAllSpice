@@ -100,7 +100,7 @@ public class RecipesController : ControllerBase
     {
         try
         {
-            List<Ingredient> ingredients = _ingredientsService.FindById(id);
+            List<Ingredient> ingredients = _ingredientsService.FindByID(id);
             return ingredients;
         }
         catch (Exception e)
