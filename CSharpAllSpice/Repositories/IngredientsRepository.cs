@@ -23,6 +23,18 @@ public class IngredientsRepository
         return ingredientData;
     }
 
+    internal List<Ingredient> FindByID(int recipeId)
+    {
+        string sql = @"
+        SELECT
+       ingred*
+       FROM ingredients
+       WHERE ingred.recipeId = @recipeId;
+        ";
+        List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
+        return ingredients;
+    }
+
     internal List<Ingredient> GetAll()
     {
         string sql = @"
@@ -33,9 +45,6 @@ public class IngredientsRepository
         List<Ingredient> ingredients = _db.Query<Ingredient>(sql).ToList();
         return ingredients;
     }
-    [HttpDelete("{id}")]
-    [Authorize]
-
 
 
 }

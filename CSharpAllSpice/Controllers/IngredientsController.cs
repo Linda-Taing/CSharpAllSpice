@@ -43,17 +43,5 @@ public class IngredientsController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    public async Task<ActionResult<string>> RemoveIngredient(int id)
-    {
-        try
-        {
-            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            string message = _ingredientsService.removeIngredient(id, userInfo.Id);
-            return Ok(message);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
+
 }

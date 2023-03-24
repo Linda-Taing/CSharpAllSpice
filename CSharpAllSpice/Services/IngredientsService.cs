@@ -21,12 +21,10 @@ public class IngredientsService
         return ingredients;
     }
 
-    internal string removeIngredient(int id, string userInfo)
+    internal List<Ingredient> FindById(int recipeId)
     {
-        Ingredient ingredient = _repo.GetOne(id);
-        if (ingredient == null) throw new Exception($"No ingredient with this {id}.");
-        if (ingredient.RecipeId != userInfo) throw new Exception("This ingredient is not your list to delete.");
-        _repo.RemoveIngredient(id);
-        return "Your ingredient list has been removed.";
+        List<Ingredient> ingredients = _repo.FindByID(recipeId);
+        return ingredients;
     }
+
 }
