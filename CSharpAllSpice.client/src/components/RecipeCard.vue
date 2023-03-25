@@ -2,8 +2,18 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12">
-                <img class="selectable rounded img-h elevation-1 border border-1 border-dark " :src="recipe.img"
-                    :alt="recipe.title">
+                <img @click="setActiveRecipe()" data-bs-toggle="modal" data-bs-target="#instructions"
+                    class="selectable rounded img-h elevation-1 border border-1 border-dark" title="Recipe Information"
+                    :src="recipe.img" :alt="recipe.title">
+                <div>
+                </div>
+                <div class="col-md-12">
+                    <div class="">
+                        <Modal class="modal-instructions" id="instructions" modal-title="Recipe Information">
+                            <InstructionsCard />
+                        </Modal>
+                    </div>
+                </div>
             </div>
             <div class=" col-md-12 d-flex justify-content-end p-3">
                 <i @click="addFavorites(recipe.id)"
@@ -34,6 +44,7 @@ import { favoritesService } from '../services/FavoritesService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { computed } from 'vue';
+import { recipesService } from '../services/RecipesService.js';
 
 
 export default {
@@ -43,26 +54,35 @@ export default {
             required: true
         }
     },
-    setup() {
+    setup(props) {
         return {
             account: computed(() => AppState.account),
+            recipes: computed(() => AppState.recipes),
+            setActiveRecipe() {
+                recipesService.setActiveRecipe(props.recipe);
+            },
             async addFavorites(recipeId) {
                 try {
-                    await favoritesService.addFavorites(recipeId)
-                } catch (error) {
-                    logger.log('ADD FAVORITE', error)
-                    Pop.error(error.message)
+                    await favoritesService.addFavorites(recipeId);
+                }
+                catch (error) {
+                    logger.log("ADD FAVORITE", error);
+                    Pop.error(error.message);
                 }
             }
-
             // <-------END OF RETURN------>
-        }
-    }
+        };
+    },
 }
 </script>
 
 
 <style lang="scss" scoped>
+.modal-instructions {
+    height: 30em;
+    width: 30em;
+}
+
 .img-h {
     height: 20em;
     width: 18em;

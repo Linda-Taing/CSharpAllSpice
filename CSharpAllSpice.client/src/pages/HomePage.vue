@@ -2,7 +2,7 @@
   <div v-if="account" class="container">
     <div class="row">
       <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
-        <router-link class="" :to="{ name: 'Home' }">
+        <router-link :to="{ name: 'Home' }">
           <button class="btn btn-secondary sm-button">Home</button>
         </router-link>
         <button @click="changeFilterCategory('recipes')" class="sm-button btn btn-secondary">My Recipes</button>

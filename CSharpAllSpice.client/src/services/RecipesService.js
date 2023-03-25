@@ -4,6 +4,9 @@ import { api } from "./AxiosService.js"
 import { Recipe } from '../models/Recipe.js'
 
 class RecipesService {
+    setActiveRecipe(recipe) {
+        AppState.recipe = recipe
+    }
     async getAllRecipes() {
         const res = await api.get('api/recipes')
         logger.log('[GETTING RECIPES]', res.data)
