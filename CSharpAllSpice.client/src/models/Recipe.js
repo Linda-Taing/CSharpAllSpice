@@ -10,10 +10,3 @@ export class Recipe {
         this.creator = new Profile(data.creator);
     }
 }
-
-export class MyFavorite extends Recipe {
-    constructor(data) {
-        super(data.recipe)
-        this.favoriteId = data.id
-    }
-}
