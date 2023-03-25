@@ -51,12 +51,13 @@ export default {
     }
     onMounted(() => {
       getAllRecipes();
+
     });
     return {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
       recipes: computed(() => {
-        if (filterCategory.value == "") {
+        if (filterCategory.value == '') {
           let filter = AppState.recipes;
           return filter;
         }
