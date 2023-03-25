@@ -15,11 +15,13 @@
     </h1>
   </div>
   <div v-if="account.id" class="d-flex justify-content-end p-3 sticky-bottom" title="Add Recipe" data-bs-toggle="modal"
-    data-bs-target="#recipeModal">
+    data-bs-target="#test-modal">
     <i @click="createRecipe()" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
   </div>
-  <Modal id="recipeModal" modal-title="Create New Recipe">
-    <RecipeCard />
+  <Modal id="test-modal" modal-title="Create New Recipe">
+
+    <CreateRecipeForm />
+
   </Modal>
 </template>
 
@@ -29,6 +31,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { recipesService } from '../services/RecipesService.js'
 import { AppState } from '../AppState.js';
+import CreateRecipeForm from '../components/CreateRecipeForm.vue';
 
 export default {
   setup() {
@@ -60,17 +63,10 @@ export default {
       changeFilterCategory(category) {
         filterCategory.value = category;
       },
-      async createRecipe() {
-        try {
-        }
-        catch (error) {
-          logger.log("[CREATE RECIPE]", error);
-          Pop.error(error.message);
-        }
-      }
       // <------END OF RETURN----->
     };
   },
+  components: { CreateRecipeForm }
 }
 </script>
 

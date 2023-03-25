@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img class="img-h selectable" :src="recipe.img" :alt="recipe.title">
+        <img class="img-h " :src="recipe.img" :alt="recipe.title">
         <div class="card-body p-1">
             <p class="fs-6 my-0 py-0">{{ recipe.title }}</p>
             <p class="fs-6 my-0 py-0">{{ recipe.category }}</p>

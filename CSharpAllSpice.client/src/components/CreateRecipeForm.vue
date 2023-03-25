@@ -1,10 +1,4 @@
 <template>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Recipe</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-    </div>
     <form @submit.prevent="createRecipe()">
         <div class="modal-body text-dark">
             <div class="mb-3">
@@ -37,16 +31,24 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { recipesService } from '../services/RecipesService.js';
+import { AppState } from '../AppState.js';
+import { Recipe } from '../models/Recipe.js';
 
 export default {
+    props: {
+        recipe: {
+            type: Recipe, required: true
+        }
+    },
     setup() {
         const editable = ref({})
         return {
             editable,
+            recipes: computed(() => AppState.recipes),
             async createRecipe() {
                 try {
                     const recipeData = editable.value
