@@ -14,6 +14,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { recipesService } from '../services/RecipesService.js'
 import { AppState } from '../AppState.js';
+import { favoritesService } from '../services/FavoritesService.js'
 
 export default {
   setup() {
@@ -26,11 +27,14 @@ export default {
         Pop.error(error, "[GETTING ALL SPICES]");
       }
     }
+
     onMounted(() => {
       getAllRecipes();
+
     });
     return {
       recipes: computed(() => AppState.recipes),
+      favorites: computed(() => AppState.favorites),
       // <------END OF RETURN----->
     };
   },
