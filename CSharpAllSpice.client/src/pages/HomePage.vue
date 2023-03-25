@@ -1,9 +1,9 @@
 <template>
   <div v-if="account" class="container">
     <div class="row">
-      <!-- <button @click="changeFilterCategory('beef')" class="btn btn-secondary">Beef</button>
-      <button @click="changeFilterCategory('pasta')" class="btn btn-secondary">Pasta</button> -->
-      <div v-for="r in recipes" class="col-md-4 p-3">
+      <!-- <button @click="changeFilterCategory('favorites')" class="btn btn-secondary">My Favorites</button>
+      <button @click="changeFilterCategory('recipes')" class="btn btn-secondary">My Recipes</button> -->
+      <div v-for="r in recipes" class="col-md-3 pb-0">
         <RecipeCard :recipe="r" />
       </div>
     </div>
@@ -19,9 +19,7 @@
     <i @click="createRecipe()" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
   </div>
   <Modal id="test-modal" modal-title="Create New Recipe">
-
     <CreateRecipeForm />
-
   </Modal>
 </template>
 
@@ -35,7 +33,7 @@ import CreateRecipeForm from '../components/CreateRecipeForm.vue';
 
 export default {
   setup() {
-    const filterCategory = ref("");
+    const filterCategory = ref('');
     async function getAllRecipes() {
       try {
         await recipesService.getAllRecipes();

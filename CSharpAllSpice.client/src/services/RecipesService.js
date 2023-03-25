@@ -14,6 +14,7 @@ class RecipesService {
     async createRecipe(recipeData) {
         const res = await api.post('api/recipes', recipeData)
         logger.log('[CREATING RECIPE]', res.data)
+        AppState.recipes.unshift(res.data)
     }
 }
 export const recipesService = new RecipesService()
