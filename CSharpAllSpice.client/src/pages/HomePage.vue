@@ -1,7 +1,10 @@
 <template>
-  <div v-for="r in recipes">
-    Recipe
-    <RecipeCard :recipe="r" />
+  <div class="container">
+    <div class="row">
+      <div v-for="r in recipes" class="col-md-4 p-3">
+        <RecipeCard :recipe="r" />
+      </div>
+    </div>
   </div>
 </template>
 
