@@ -16,5 +16,6 @@ class RecipesService {
         logger.log('[CREATING RECIPE]', res.data)
         AppState.recipes.unshift(res.data)
     }
+
 }
 export const recipesService = new RecipesService()

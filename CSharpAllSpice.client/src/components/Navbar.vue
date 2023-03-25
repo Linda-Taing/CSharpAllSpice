@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark spice-bg px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark spice-bg px-3 ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-dark align-items-center">
-        <p class="text-center">Home</p>
+        <p class="text-center">All Spice</p>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -38,8 +38,14 @@ export default {
   background-image: url("https://media.istockphoto.com/id/1297420369/photo/herbs-and-spices-in-bowels.jpg?b=1&s=170667a&w=0&k=20&c=JcWI3qRUvL3uTO80RI6A6NKn-555vNif0ybp28Cl9Gc=");
   background-position: center;
   background-size: cover;
-  margin-bottom: 3em;
+
+
   ;
+}
+
+.bg-grade {
+
+  background-image: linear-gradient(to bottom, #7fb29d, #9ac0a8, #b4ceb5, #cddcc4, #e4ebd6);
 }
 
 a:hover {

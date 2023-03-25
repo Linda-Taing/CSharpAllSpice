@@ -10,5 +10,17 @@ class FavoritesService {
         AppState.favorites = res.data.map(f => new Favorite(f))
         logger.log('this fave is in the service', AppState.favorites)
     }
+    async addFavorites(recipeId) {
+        debugger
+        logger.log('[ADDING FAVORITES HERE]')
+        const res = await api.post('api/favorites', recipeId)
+        logger.log('[did fave ADD here?]')
+        let i = AppState.favorites.findIndex(r => r.id == recipeId)
+        if (i != 1) {
+            AppState.favorites.splice(i, 1)
+        }
+
+
+    }
 }
 export const favoritesService = new FavoritesService()

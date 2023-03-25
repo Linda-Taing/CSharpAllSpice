@@ -1,8 +1,13 @@
 <template>
   <div v-if="account" class="container">
     <div class="row">
-      <!-- <button @click="changeFilterCategory('favorites')" class="btn btn-secondary">My Favorites</button>
-      <button @click="changeFilterCategory('recipes')" class="btn btn-secondary">My Recipes</button> -->
+      <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
+        <router-link class="" :to="{ name: 'Home' }">
+          <button class="btn btn-secondary sm-button">Home</button>
+        </router-link>
+        <button @click="changeFilterCategory('recipes')" class="sm-button btn btn-secondary">My Recipes</button>
+        <button @click="changeFilterCategory('favorites')" class="sm-button btn btn-secondary">My Favorites</button>
+      </div>
       <div v-for="r in recipes" class="col-md-3 pb-0">
         <RecipeCard :recipe="r" />
       </div>
@@ -68,4 +73,14 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.card-filter {
+  background-color: dark;
+  width: 100vw;
+}
+
+.sm-button {
+  width: 10em;
+  margin-left: 3em;
+}
+</style>

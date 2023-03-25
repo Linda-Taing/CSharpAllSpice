@@ -28,7 +28,13 @@
 
 
 <script>
+import { AppState } from '../AppState.js';
 import { Recipe } from '../models/Recipe.js';
+import { favoritesService } from '../services/FavoritesService.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { computed } from 'vue';
+
 
 export default {
     props: {
@@ -38,7 +44,19 @@ export default {
         }
     },
     setup() {
-        return {}
+        return {
+            account: computed(() => AppState.account),
+            async addFavorites(recipeId) {
+                try {
+                    await favoritesService.addFavorites(recipeId)
+                } catch (error) {
+                    logger.log('ADD FAVORITE', error)
+                    Pop.error(error.message)
+                }
+            }
+
+            // <-------END OF RETURN------>
+        }
     }
 }
 </script>

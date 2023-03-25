@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-grade">
     <router-view />
   </main>
 </template>
@@ -23,6 +23,10 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.bg-grade {
+  background-image: linear-gradient(to right bottom, #7fb29d, #9ac0a8, #b4ceb5, #cddcc4, #e4ebd6);
+}
 
 :root {
   --main-height: calc(100vh - 32px - 64px);
