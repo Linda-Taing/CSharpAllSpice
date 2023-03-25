@@ -16,6 +16,7 @@
                 </div>
             </div>
             <div class=" col-md-12 d-flex justify-content-end p-3">
+                <!-- FIXME: @CLICK WILL GIVE ERROR OF 415 -->
                 <i @click="addFavorites(recipe.id)"
                     class="fave-heart text-light fs-3 p-2 opacity-75 selectable mdi mdi-heart-outline"></i>
             </div>
@@ -45,6 +46,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { computed } from 'vue';
 import { recipesService } from '../services/RecipesService.js';
+import { useRoute } from 'vue-router';
 
 
 export default {
@@ -55,15 +57,16 @@ export default {
         }
     },
     setup(props) {
+        const route = useRoute();
         return {
             account: computed(() => AppState.account),
             recipes: computed(() => AppState.recipes),
             setActiveRecipe() {
                 recipesService.setActiveRecipe(props.recipe);
             },
-            async addFavorites(recipeId) {
+            async addFavorites() {
                 try {
-                    await favoritesService.addFavorites(recipeId);
+                    await favoritesService.addFavorites({ recipeId: route.params.recipeId });
                 }
                 catch (error) {
                     logger.log("ADD FAVORITE", error);

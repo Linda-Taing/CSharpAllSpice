@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark spice-bg px-3 ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-dark align-items-center">
+        <!-- NOTE: CHANGE FONT -->
         <p class="text-center">All Spice</p>
       </div>
     </router-link>

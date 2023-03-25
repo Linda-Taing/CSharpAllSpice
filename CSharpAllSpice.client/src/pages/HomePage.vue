@@ -5,6 +5,7 @@
         <router-link :to="{ name: 'Home' }">
           <button class="btn btn-secondary sm-button">Home</button>
         </router-link>
+        <!-- FIXME: FILTER BUTTONS ARE NOT FILTERING, THEY FILTER TO A BLANK. -->
         <button @click="changeFilterCategory('recipes')" class="sm-button btn btn-secondary">My Recipes</button>
         <button @click="changeFilterCategory('favorites')" class="sm-button btn btn-secondary">My Favorites</button>
       </div>
