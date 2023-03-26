@@ -9,9 +9,19 @@ class RecipesService {
     }
     async getAllRecipes() {
         const res = await api.get('api/recipes')
-        logger.log('[GETTING RECIPES]', res.data)
+        // logger.log('[GETTING RECIPES]', res.data)
         AppState.recipes = res.data.map(r => new Recipe(r))
-        logger.log('this is the service', AppState.recipes)
+        // logger.log('this is the service', AppState.recipes)
+
+    }
+    async getMyRecipes() {
+        const res = await api.get('api/recipes')
+        // filtering out the recipes with the account.id from the List of AllRecipes.
+        const recipes = res.data.filter(d => d.creatorId = AppState.account.id)
+        logger.log('[MY RECIPES IN THE R-SERVICE]')
+        // Mapping the List back into an object.
+        AppState.recipes = recipes.map(d => new Recipe(d))
+        logger.log('[did you complete full function?]')
 
     }
     async createRecipe(recipeData) {

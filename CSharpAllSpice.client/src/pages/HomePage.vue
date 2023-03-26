@@ -2,7 +2,7 @@
   <div v-if="account" class="container">
     <div class="row">
       <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
-        <button class="btn btn-secondary sm-button">Home</button>
+        <button @click="getAllRecipes()" class="btn btn-secondary sm-button">Home</button>
         <!-- FIXME: FILTER BUTTONS ARE NOT FILTERING, THEY FILTER TO A BLANK. -->
         <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
         <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button>
@@ -28,12 +28,13 @@
 </template>
 
 <script>
-import { onMounted, computed, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { recipesService } from '../services/RecipesService.js'
 import { AppState } from '../AppState.js';
 import CreateRecipeForm from '../components/CreateRecipeForm.vue';
+import { favoritesService } from '../services/FavoritesService.js';
 
 export default {
   setup() {
@@ -53,7 +54,29 @@ export default {
     return {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
-      recipes: computed(() => AppState.recipes);
+      recipes: computed(() => AppState.recipes),
+      getAllRecipes,
+
+      async getMyFavorites() {
+        try {
+          await favoritesService.getMyFavorites()
+        } catch (error) {
+          logger.log('[GETTING MY FAVES]')
+          Pop.error(error)
+
+        }
+      },
+
+      async getMyRecipes() {
+        try {
+          await recipesService.getMyRecipes()
+        } catch (error) {
+          logger.log('[Getting My Recipes]')
+          Pop.error(error, '[GETTING MY RECIPES]')
+
+        }
+
+      }
 
       // <------END OF RETURN----->
     };

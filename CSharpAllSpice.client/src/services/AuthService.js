@@ -28,8 +28,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   // NOTE if there is something you want to do once the user is authenticated, place that here
-
-  await favoritesService.getMyFavorites()
+  // Didn't know how to draw it to page but could see them in the console.
+  // await favoritesService.getMyFavorites()
 })
 
 async function refreshAuthToken(config) {
