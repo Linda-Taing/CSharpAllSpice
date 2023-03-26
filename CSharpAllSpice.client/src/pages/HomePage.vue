@@ -89,7 +89,7 @@ export default {
 
         }
       },
-
+      // NOTE: When using this function it still draws all recipes, my creatorId is attached to the bottom of all recipes.
       async getMyRecipes() {
         try {
           await recipesService.getMyRecipes()
