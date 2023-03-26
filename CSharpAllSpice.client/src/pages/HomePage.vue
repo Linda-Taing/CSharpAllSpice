@@ -2,12 +2,10 @@
   <div v-if="account" class="container">
     <div class="row">
       <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
-        <router-link :to="{ name: 'Home' }">
-          <button class="btn btn-secondary sm-button">Home</button>
-        </router-link>
+        <button class="btn btn-secondary sm-button">Home</button>
         <!-- FIXME: FILTER BUTTONS ARE NOT FILTERING, THEY FILTER TO A BLANK. -->
-        <button @click="changeFilterCategory('recipes')" class="sm-button btn btn-secondary">My Recipes</button>
-        <button @click="changeFilterCategory('favorites')" class="sm-button btn btn-secondary">My Favorites</button>
+        <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
+        <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button>
       </div>
       <div v-for="r in recipes" class="col-md-3 pb-0">
         <RecipeCard :recipe="r" />
@@ -39,7 +37,6 @@ import CreateRecipeForm from '../components/CreateRecipeForm.vue';
 
 export default {
   setup() {
-    const filterCategory = ref('');
     async function getAllRecipes() {
       try {
         await recipesService.getAllRecipes();
@@ -56,18 +53,8 @@ export default {
     return {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
-      recipes: computed(() => {
-        if (filterCategory.value == '') {
-          let filter = AppState.recipes;
-          return filter;
-        }
-        else {
-          return AppState.recipes.filter(a => a.category == filterCategory.value);
-        }
-      }),
-      changeFilterCategory(category) {
-        filterCategory.value = category;
-      },
+      recipes: computed(() => AppState.recipes);
+
       // <------END OF RETURN----->
     };
   },
