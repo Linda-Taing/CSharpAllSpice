@@ -18,7 +18,7 @@ class RecipesService {
         const res = await api.get('api/recipes')
         // filtering out the recipes with the account.id from the List of AllRecipes.
         const recipes = res.data.filter(d => d.creatorId = AppState.account.id)
-        logger.log('[MY RECIPES IN THE R-SERVICE]')
+        logger.log(res.data)
         // Mapping the List back into an object.
         AppState.recipes = recipes.map(d => new Recipe(d))
         logger.log('[did you complete full function?]')
