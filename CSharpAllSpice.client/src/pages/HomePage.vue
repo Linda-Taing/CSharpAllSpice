@@ -65,20 +65,21 @@ export default {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
       recipes: computed(() => AppState.recipes),
+
       getAllRecipes,
       // NOTE: This is set for the filter, when filtering it would go to a blank page so I am looking for different routes.
-      recipes: computed(() => {
-        if (filterCategory.value == '') {
-          let filter = AppState.recipes;
-          return filter;
-        }
-        else {
-          return AppState.recipes.filter(a => a.category == filterCategory.value);
-        }
-      }),
-      changeFilterCategory(category) {
-        filterCategory.value = category;
-      },
+      // recipes: computed(() => {
+      //   if (filterCategory.value == '') {
+      //     let filter = AppState.recipes;
+      //     return filter;
+      //   }
+      //   else {
+      //     return AppState.recipes.filter(a => a.category == filterCategory.value);
+      //   }
+      // }),
+      // changeFilterCategory(category) {
+      //   filterCategory.value = category;
+      // },
 
       async getMyFavorites() {
         try {

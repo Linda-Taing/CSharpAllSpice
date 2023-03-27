@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="">
-                        <Modal class="modal-instructions" id="instructions" modal-title="Recipe Information">
+                        <Modal class="modal-instructions" id="instructions" :modal-title="recipe.title">
                             <InstructionsCard />
                         </Modal>
                     </div>
@@ -64,9 +64,9 @@ export default {
             setActiveRecipe() {
                 recipesService.setActiveRecipe(props.recipe);
             },
-            async addFavorites() {
+            async addFavorites(recipeId) {
                 try {
-                    await favoritesService.addFavorites({ recipeId: route.params.recipeId });
+                    await favoritesService.addFavorites(recipeId);
                 }
                 catch (error) {
                     logger.log("ADD FAVORITE", error);
