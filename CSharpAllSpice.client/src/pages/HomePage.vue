@@ -4,13 +4,13 @@
       <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
         <!-- FIXME: FILTER BUTTONS ARE NOT FILTERING, THEY FILTER TO A BLANK. -->
         <!-- <button @click="changeFilterCategory('recipes')" class="sm-button btn btn-secondary">My Recipes</button>
-        <button @click="changeFilterCategory('favorites')" class="sm-button btn btn-secondary">My Favorites</button>
-      </div> -->
+        <button @click="changeFilterCategory('favorites')" class="sm-button btn btn-secondary">My Favorites</button> -->
+        <!-- </div> -->
         <!-- FIXME: This section I can get AllRecipes and Favorites but not drawing the MyRecipes data to console.  -->
-        <router-link :to="{ name: 'Home' }">
+        <!-- <router-link :to="{ name: 'Home' }">
           <button class="btn btn-secondary sm-button">Home</button>
-        </router-link>
-        <!-- <button @click="getAllRecipes()" class="btn btn-secondary sm-button">Home</button> -->
+        </router-link> -->
+        <button @click="getAllRecipes()" class="btn btn-secondary sm-button">Home</button>
         <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
         <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button>
 
@@ -65,20 +65,20 @@ export default {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
       recipes: computed(() => AppState.recipes),
-      // getAllRecipes,
+      getAllRecipes,
       // NOTE: This is set for the filter, when filtering it would go to a blank page so I am looking for different routes.
-      // recipes: computed(() => {
-      //   if (filterCategory.value == '') {
-      //     let filter = AppState.recipes;
-      //     return filter;
-      //   }
-      //   else {
-      //     return AppState.recipes.filter(a => a.category == filterCategory.value);
-      //   }
-      // }),
-      // changeFilterCategory(category) {
-      //   filterCategory.value = category;
-      // },
+      recipes: computed(() => {
+        if (filterCategory.value == '') {
+          let filter = AppState.recipes;
+          return filter;
+        }
+        else {
+          return AppState.recipes.filter(a => a.category == filterCategory.value);
+        }
+      }),
+      changeFilterCategory(category) {
+        filterCategory.value = category;
+      },
 
       async getMyFavorites() {
         try {
