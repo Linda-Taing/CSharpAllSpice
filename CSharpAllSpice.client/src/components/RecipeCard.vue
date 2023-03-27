@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="">
-                        <Modal class="modal-instructions" id="instructions" :modal-title="recipe.title">
+                        <Modal class="modal-instructions" id="instructions" :modal-title="activeRecipe.title">
                             <InstructionsCard />
                         </Modal>
                     </div>
@@ -59,6 +59,7 @@ export default {
     setup(props) {
         const route = useRoute();
         return {
+            activeRecipe: computed(() => AppState.recipe),
             account: computed(() => AppState.account),
             recipes: computed(() => AppState.recipes),
             setActiveRecipe() {

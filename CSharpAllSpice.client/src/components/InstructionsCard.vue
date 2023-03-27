@@ -1,6 +1,7 @@
 <template>
     <!--NOTE: NEED TO FILL OUT INFORMATION FOR RECIPE MODAL. -->
     <div v-if="recipe">
+
         <img class="instruction-img" :src="recipe.img" alt="">
     </div>
 </template>
