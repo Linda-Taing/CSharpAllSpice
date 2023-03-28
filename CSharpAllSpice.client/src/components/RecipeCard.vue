@@ -96,8 +96,8 @@ export default {
 
 <style lang="scss" scoped>
 .modal-instructions {
-    height: 30em;
-    width: 30em;
+    height: 100em;
+    width: 100em;
 }
 
 .img-h {

@@ -22,7 +22,6 @@ class RecipesService {
         // Mapping the List back into an object.
         AppState.recipes = recipes.map(r => new Recipe())
         logger.log('[did you complete full function?]')
-
     }
     async createRecipe(recipeData) {
         const res = await api.post('api/recipes', recipeData)

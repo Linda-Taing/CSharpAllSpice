@@ -3,6 +3,8 @@
     <div v-if="recipe" class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title text-dark fs-5" id="exampleModalLabel"> {{ recipe.title }}</h1>
+            <i @click="deleteRecipe()" class=" fs-3 ms-5 selectable text-danger mdi mdi-delete-forever"
+                title="Delete Recipe"></i>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -18,7 +20,10 @@
                         <li>{{ i.quantity }}</li>
                     </div>
                 </div>
-                <div>
+                <!-- NOTE: Use GregsList Reference to toggle create and edit buttons. -->
+                <div class="">
+                    <button class=" btn btn-success">Add Recipe</button>
+                    <button class="btn btn-warning">Edit Recipe</button>
 
                 </div>
             </div>
@@ -51,6 +56,14 @@ export default {
 
                 }
             },
+            async deleteRecipe() {
+                try {
+
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(e, '[Delete Recipes are you here?]')
+                }
+            }
 
 
 

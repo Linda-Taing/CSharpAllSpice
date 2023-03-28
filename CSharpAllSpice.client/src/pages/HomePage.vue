@@ -30,7 +30,7 @@
     data-bs-target="#test-modal">
     <i @click="createRecipe()" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
   </div>
-  <Modal id="test-modal" modal-title="Create New Recipe">
+  <Modal id="test-modal">
     <CreateRecipeForm />
   </Modal>
 </template>
@@ -102,7 +102,7 @@ export default {
       },
 
 
-      // NOTE: When using this function it still draws all recipes, my creatorId is attached to the bottom of all recipes.
+
 
       // <------END OF RETURN----->
     };
