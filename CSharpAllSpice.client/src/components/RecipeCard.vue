@@ -2,9 +2,9 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12">
-                <img @click="setActiveRecipe()" data-bs-toggle="modal" data-bs-target="#instructions"
-                    class="selectable rounded img-h elevation-1 border border-1 border-dark" title="Recipe Information"
-                    :src="recipe.img" :alt="recipe.title">
+                <img @click="setActiveRecipe(), getIngredientsById(recipe.id)" data-bs-toggle="modal"
+                    data-bs-target="#instructions" class="selectable rounded img-h elevation-1 border border-1 border-dark"
+                    title="Recipe Information" :src="recipe.img" :alt="recipe.title">
                 <div>
                 </div>
                 <div class="col-md-12">

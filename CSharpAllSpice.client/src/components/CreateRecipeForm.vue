@@ -1,5 +1,6 @@
 <template>
     <div class="model-content bg-light">
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-body">
             <form @submit.prevent="createRecipe()">
