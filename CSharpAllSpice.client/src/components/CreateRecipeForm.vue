@@ -1,5 +1,5 @@
 <template>
-    <div class="model-content bg-light">
+    <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title text-dark fs-5" id="exampleModalLabel">Create Recipe</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -45,11 +45,11 @@ import { AppState } from '../AppState.js';
 import { Recipe } from '../models/Recipe.js';
 
 export default {
-    props: {
-        recipe: {
-            type: Recipe, required: true
-        }
-    },
+    // props: {
+    //     recipe: {
+    //         type: Recipe, required: true
+    //     }
+    // },
     setup() {
         const editable = ref({})
         return {

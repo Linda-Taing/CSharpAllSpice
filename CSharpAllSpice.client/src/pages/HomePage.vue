@@ -26,13 +26,9 @@
         class="mdi mdi-pinwheel mdi-spin"></i><i class="mdi mdi-pinwheel mdi-spin"></i>
     </h1>
   </div>
-  <div v-if="account.id" class="d-flex justify-content-end p-3 sticky-bottom" title="Add Recipe" data-bs-toggle="modal"
-    data-bs-target="#test-modal">
-    <i @click="createRecipe()" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
+  <div v-if="account.id" class="d-flex justify-content-end p-3 sticky-bottom" title="Add Recipe">
+    <i data-bs-toggle="modal" data-bs-target="#test-modal" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
   </div>
-  <Modal id="test-modal">
-    <CreateRecipeForm />
-  </Modal>
 </template>
 
 <script>

@@ -5,6 +5,11 @@
   <main class="bg-grade">
     <router-view />
   </main>
+  <footer>
+    <Modal id="test-modal">
+      <CreateRecipeForm />
+    </Modal>
+  </footer>
 </template>
 
 <script>
