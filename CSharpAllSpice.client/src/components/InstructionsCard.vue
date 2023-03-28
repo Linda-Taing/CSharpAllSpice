@@ -13,13 +13,14 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
                     <p><b>Instructions:</b> {{ recipe.instructions }}</p>
+                    <div v-for="i in ingredients"><b>Ingredients List:</b>
+                        <li>{{ i.name }}</li>
+                        <li>{{ i.quantity }}</li>
+                    </div>
                 </div>
-                <div v-for="i in ingredients">Ingredients List:
-                    <li><b>{{ i.name }}</b></li>
-                    <li>{{ i.quantity }}</li>
+                <div>
 
                 </div>
-                <div></div>
             </div>
         </div>
     </div>
