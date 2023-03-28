@@ -14,13 +14,13 @@ class RecipesService {
         logger.log('this is the service', AppState.recipes)
 
     }
-    async getMyRecipes() {
+    async getMyRecipes(creatorId) {
         const res = await api.get('api/recipes')
         // filtering out the recipes with the account.id from the List of AllRecipes.
         const recipes = res.data.filter(d => d.creatorId = AppState.account.id)
         logger.log(res.data)
         // Mapping the List back into an object.
-        AppState.recipes = recipes.map(r => new Recipe(r))
+        AppState.recipes = recipes.map(r => new Recipe())
         logger.log('[did you complete full function?]')
 
     }

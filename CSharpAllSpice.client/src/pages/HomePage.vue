@@ -11,7 +11,7 @@
           <button class="btn btn-secondary sm-button">Home</button>
         </router-link> -->
         <button @click="getAllRecipes()" class="btn btn-secondary sm-button">Home</button>
-        <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
+        <button @click="getMyRecipes(creator.id)" class="sm-button btn btn-secondary">My Recipes</button>
         <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button>
 
       </div>
@@ -65,6 +65,7 @@ export default {
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
       recipes: computed(() => AppState.recipes),
+      creator: computed(() => AppState.account),
 
       getAllRecipes,
       // NOTE: This is set for the filter, when filtering it would go to a blank page so I am looking for different routes.
@@ -91,9 +92,10 @@ export default {
         }
       },
       // NOTE: When using this function it still draws all recipes, my creatorId is attached to the bottom of all recipes.
-      async getMyRecipes() {
+      async getMyRecipes(creatorId) {
+
         try {
-          await recipesService.getMyRecipes()
+          await recipesService.getMyRecipes(creatorId)
         } catch (error) {
           logger.log('[Getting My Recipes]')
           Pop.error(error, '[GETTING MY RECIPES]')

@@ -1,8 +1,22 @@
 <template>
     <!--NOTE: NEED TO FILL OUT INFORMATION FOR RECIPE MODAL. -->
-    <div v-if="recipe">
+    <div v-if="recipe" class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title text-dark fs-5" id="exampleModalLabel"> {{ recipe.title }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="instruction-img" :src="recipe.img" alt="">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <p><b>Instructions:</b> {{ recipe.instructions }}</p>
+                </div>
 
-        <img class="instruction-img" :src="recipe.img" alt="">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -10,14 +24,28 @@
 <script>
 import { computed, ref } from 'vue';
 import { AppState } from '../AppState.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
 export default {
+
 
 
     setup() {
         const editable = ref({})
         return {
             editable,
-            recipe: computed(() => AppState.recipe)
+            ingredients: computed(() => AppState.ingredients),
+            recipe: computed(() => AppState.recipe),
+            async getInstructionsById() {
+                try {
+                    await instructionsService.getInstructionsById()
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(e, '[Instructions you here?]')
+
+                }
+            },
+
         }
     }
 }
@@ -26,8 +54,8 @@ export default {
 
 <style lang="scss" scoped>
 .instruction-img {
-    height: 20em;
-    width: 20em;
+    height: 10em;
+    width: 10em;
 
 }
 </style>

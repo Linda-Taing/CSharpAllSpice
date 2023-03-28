@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="">
-                        <Modal class="modal-instructions" id="instructions" :modal-title="activeRecipe.title">
+                        <Modal class="modal-instructions" id="instructions" :modal-title="recipe.title">
                             <InstructionsCard />
                         </Modal>
                     </div>
@@ -44,11 +44,10 @@ import { Recipe } from '../models/Recipe.js';
 import { favoritesService } from '../services/FavoritesService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { recipesService } from '../services/RecipesService.js';
 import { useRoute } from 'vue-router';
-
-
+import { ingredientsService } from '../services/IngredientsService.js'
 export default {
     props: {
         recipe: {
@@ -57,11 +56,15 @@ export default {
         }
     },
     setup(props) {
-        const route = useRoute();
+        const route = useRoute()
+
+        onMounted(() => {
+        })
         return {
             activeRecipe: computed(() => AppState.recipe),
             account: computed(() => AppState.account),
             recipes: computed(() => AppState.recipes),
+
             setActiveRecipe() {
                 recipesService.setActiveRecipe(props.recipe);
             },
@@ -73,7 +76,17 @@ export default {
                     logger.log("ADD FAVORITE", error);
                     Pop.error(error.message);
                 }
-            }
+            },
+            async getIngredientsById(recipeId) {
+                try {
+                    await ingredientsService.getIngredientsById(recipeId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error, '[Ingredients here?]')
+
+                }
+            },
+
             // <-------END OF RETURN------>
         };
     },
