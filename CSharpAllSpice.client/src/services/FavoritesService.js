@@ -11,7 +11,15 @@ class FavoritesService {
         // NOTE: originally had this function routed from AuthService using the PostItVue. but not sure again how to tie all back to the HOMEPAGE.
         const res = await api.get('account/favorites')
         logger.log('[GETTING MY FAVORITES]', res.data)
-        AppState.recipes = res.data.map(r => new Recipe(r))
+        AppState.favorites = res.data.map(r => new Recipe(r))
+        // Andrew helped me with this part of the function: 
+        AppState.recipes.forEach(r => {
+            AppState.favorites.forEach(f => {
+                if (r.id == f.id) {
+                    r.favoriteId = f.favoriteId
+                }
+            })
+        })
         logger.log('this fave is in the service', AppState.recipes)
     }
     async addFavorites(recipeId) {

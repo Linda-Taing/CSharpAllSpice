@@ -15,7 +15,7 @@ class RecipesService {
 
     }
     async getMyRecipes(recipeId) {
-        const res = await api.get('api/recipes/${recipeId}')
+        const res = await api.get(`api/recipes/${recipeId}`)
         // filtering out the recipes with the account.id from the List of AllRecipes.
         const recipes = res.data.filter(d => d.creatorId = AppState.account.id)
         logger.log(res.data)

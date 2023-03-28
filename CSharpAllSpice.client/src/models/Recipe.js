@@ -7,6 +7,7 @@ export class Recipe {
         this.instructions = data.instructions
         this.img = data.img
         this.category = data.category
+        this.favoriteId = data.favoriteId || 0
         this.creator = new Profile(data.creator);
     }
 }
