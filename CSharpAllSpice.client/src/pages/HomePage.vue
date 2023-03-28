@@ -92,10 +92,10 @@ export default {
         }
       },
       // NOTE: When using this function it still draws all recipes, my creatorId is attached to the bottom of all recipes.
-      async getMyRecipes(creatorId) {
+      async getMyRecipes() {
 
         try {
-          await recipesService.getMyRecipes(creatorId)
+          await recipesService.getMyRecipes()
         } catch (error) {
           logger.log('[Getting My Recipes]')
           Pop.error(error, '[GETTING MY RECIPES]')
