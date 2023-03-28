@@ -27,6 +27,7 @@ class RecipesService {
         const res = await api.post('api/recipes', recipeData)
         logger.log('[CREATING RECIPE]', res.data)
         AppState.recipes.unshift(res.data)
+        return new Recipe(res.data)
     }
 
 }

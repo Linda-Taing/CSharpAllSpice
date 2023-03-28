@@ -82,6 +82,7 @@ export default {
       recipes: computed(() => AppState.recipes),
       creator: computed(() => AppState.account),
 
+
       getAllRecipes,
       // NOTE: This is set for the filter, when filtering it would go to a blank page so I am looking for different routes.
       recipes: computed(() => {
@@ -100,6 +101,17 @@ export default {
       changeFilterCategory(category) {
         filterCategory.value = category;
       },
+      // async createRecipe() {
+      //   try {
+      //     const recipeData = editable.value
+      //     await recipesService.createRecipe(recipeData)
+      //     editable.value = {}
+      //     Pop.success('[YOU HAVE CREATED A RECIPE!]')
+      //   } catch (error) {
+      //     logger.log('[CREATE RECIPE]')
+      //     Pop.error(error.message);
+      //   }
+      // },
 
 
 
