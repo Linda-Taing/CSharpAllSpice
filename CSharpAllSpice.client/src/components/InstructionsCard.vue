@@ -14,7 +14,12 @@
                 <div class="col-md-6">
                     <p><b>Instructions:</b> {{ recipe.instructions }}</p>
                 </div>
+                <div v-for="i in ingredients">Ingredients List:
+                    <li><b>{{ i.name }}</b></li>
+                    <li>{{ i.quantity }}</li>
 
+                </div>
+                <div></div>
             </div>
         </div>
     </div>

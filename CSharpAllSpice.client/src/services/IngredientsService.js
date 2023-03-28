@@ -6,7 +6,8 @@ class IngredientsService {
     async getIngredientsById(recipeId) {
         const res = await api.get(`api/recipes/${recipeId}/ingredients`)
         logger.log('[Ingredients in service]', res.data)
-        AppState.ingredient
+        AppState.ingredients = res.data
+
 
     }
 
