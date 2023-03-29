@@ -47,7 +47,8 @@ import Pop from '../utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { recipesService } from '../services/RecipesService.js';
 import { useRoute } from 'vue-router';
-import { ingredientsService } from '../services/IngredientsService.js'
+import { ingredientsService } from '../services/IngredientsService.js';
+
 export default {
     props: {
         recipe: {
@@ -83,7 +84,6 @@ export default {
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error, '[Ingredients here?]')
-
                 }
             },
 

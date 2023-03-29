@@ -39,9 +39,6 @@ export default {
   background-image: url("https://media.istockphoto.com/id/1297420369/photo/herbs-and-spices-in-bowels.jpg?b=1&s=170667a&w=0&k=20&c=JcWI3qRUvL3uTO80RI6A6NKn-555vNif0ybp28Cl9Gc=");
   background-position: center;
   background-size: cover;
-
-
-  ;
 }
 
 .bg-grade {

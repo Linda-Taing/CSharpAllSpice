@@ -36,9 +36,8 @@
 import { onMounted, computed, ref, watchEffect } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
-import { recipesService } from '../services/RecipesService.js'
+import { recipesService } from '../services/RecipesService.js';
 import { AppState } from '../AppState.js';
-import CreateRecipeForm from '../components/CreateRecipeForm.vue';
 import { favoritesService } from '../services/FavoritesService.js';
 
 export default {
