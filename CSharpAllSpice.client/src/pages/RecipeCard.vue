@@ -15,9 +15,10 @@
                     </div>
                 </div>
             </div>
-            <div class=" col-md-12 d-flex justify-content-end ">
+            <div class=" col-md-12 d-flex justify-content-end p-3">
+                <!-- FIXME: @CLICK WILL GIVE ERROR OF 415 -->
                 <i @click="addFavorites(recipe.id)"
-                    class="fave-heart text-light fs-3 opacity-75 selectable mdi mdi-heart-outline"></i>
+                    class="fave-heart text-light fs-3 p-2 opacity-75 selectable mdi mdi-heart-outline"></i>
             </div>
             <div class="col-md-12">
                 <div class="d-flex justify-content-center align-content-end">
@@ -95,14 +96,14 @@ export default {
 
 <style lang="scss" scoped>
 .img-h {
-    height: 50vh;
-    width: 42vh;
+    height: 20em;
+    width: 18em;
     object-fit: cover;
 }
 
 .frosted-card-title {
-    width: 25vh;
-    transform: translateY(-15vh);
+    width: 15em;
+    transform: translateY(-300%);
     box-shadow: 0 0 5px 0;
     background: inherit;
     backdrop-filter: blur(50px);
@@ -110,9 +111,9 @@ export default {
 }
 
 .frosted-card-cat {
-    width: 18vh;
+    width: 8em;
     content: object-fit;
-    transform: translateY(-50vh);
+    transform: translateY(-22em);
     box-shadow: 0 0 5px 0;
     background: inherit;
     backdrop-filter: blur(50px);
@@ -120,8 +121,7 @@ export default {
 }
 
 .fave-heart {
-    transform: translateY(-48vh);
+    transform: translateY(-12em);
     position: absolute;
-    text-shadow: 1px 1px 2px black;
 }
 </style>
