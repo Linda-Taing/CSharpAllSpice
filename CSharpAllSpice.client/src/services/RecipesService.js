@@ -37,5 +37,9 @@ class RecipesService {
         }
     }
 
+    async editInstructions(recipeId) {
+        const res = await api.put(`api/recipes/${recipeId}`)
+        logger.log('[EDIT INSTRUCTIONS]')
+    }
 }
 export const recipesService = new RecipesService()

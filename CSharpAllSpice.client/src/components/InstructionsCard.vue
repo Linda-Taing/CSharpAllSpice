@@ -16,6 +16,9 @@
                 <div class="col-md-6">
                     <p class="mb-0"><b>Instructions:</b> {{ recipe.instructions }}</p>
                     <!-- TODO: Write an edit instructions recipe -->
+                    <form>
+                        <textarea v-model="editable.instructions" name="" id="" cols="30" rows="1"></textarea>
+                    </form>
                     <i @click="editInstructions()" title="Edit Instructions"
                         class="mdi selectable mdi-pencil-circle text-warning fs-3"></i>
                 </div>
@@ -109,6 +112,14 @@ export default {
                     logger.log('[ingredient id]', ingredientId)
                     if (await Pop.confirm('Are you sure you want to delete the ingredients?'))
                         await ingredientsService.removeIngredient(ingredientId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error, '[delete ingredients here?]')
+                }
+            },
+            async editInstructions(recipeId) {
+                try {
+                    await recipesService.editInstructions(recipeId)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error, '[delete ingredients here?]')

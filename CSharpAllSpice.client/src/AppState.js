@@ -21,4 +21,6 @@ export const AppState = reactive({
   ingredients: [],
   /** @type {import('./models/Ingredient.js').Ingredient| Null} */
   ingredient: null,
+
+  editInstruction: false,
 })
