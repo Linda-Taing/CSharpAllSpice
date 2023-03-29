@@ -15,10 +15,9 @@
                     </div>
                 </div>
             </div>
-            <div class=" col-md-12 d-flex justify-content-end p-3">
-                <!-- FIXME: @CLICK WILL GIVE ERROR OF 415 -->
+            <div class=" col-md-12 d-flex justify-content-end ">
                 <i @click="addFavorites(recipe.id)"
-                    class="fave-heart text-light fs-3 p-2 opacity-75 selectable mdi mdi-heart-outline"></i>
+                    class="fave-heart text-light fs-3 opacity-75 selectable mdi mdi-heart-outline"></i>
             </div>
             <div class="col-md-12">
                 <div class="d-flex justify-content-center align-content-end">
@@ -95,20 +94,15 @@ export default {
 
 
 <style lang="scss" scoped>
-.modal-instructions {
-    // height: 100em;
-    // width: 100em;
-}
-
 .img-h {
-    height: 20em;
-    width: 18em;
+    height: 50vh;
+    width: 42vh;
     object-fit: cover;
 }
 
 .frosted-card-title {
-    width: 15em;
-    transform: translateY(-300%);
+    width: 25vh;
+    transform: translateY(-15vh);
     box-shadow: 0 0 5px 0;
     background: inherit;
     backdrop-filter: blur(50px);
@@ -116,9 +110,9 @@ export default {
 }
 
 .frosted-card-cat {
-    width: 8em;
+    width: 18vh;
     content: object-fit;
-    transform: translateY(-22em);
+    transform: translateY(-50vh);
     box-shadow: 0 0 5px 0;
     background: inherit;
     backdrop-filter: blur(50px);
@@ -126,7 +120,8 @@ export default {
 }
 
 .fave-heart {
-    transform: translateY(-12em);
+    transform: translateY(-48vh);
     position: absolute;
+    text-shadow: 1px 1px 2px black;
 }
 </style>
