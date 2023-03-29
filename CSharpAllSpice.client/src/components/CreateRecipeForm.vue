@@ -17,9 +17,14 @@
                         aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <input v-model="editable.category" required type="text" name="category" class="form-control"
-                        id="category" aria-describedby="emailHelp">
+                    <label for="category" class="form-label me-2">Category</label>
+                    <select class="rounded fs-4" required name="category" id="category" v-model="editable.category">
+                        <option value="Italian">Italian</option>
+                        <option value="Soup">Soup</option>
+                        <option value="Cheese">Cheese</option>
+                        <option value="Specialty Coffee">Specialty Coffee</option>
+                        <option value="Breakfast" selected>Breakfast</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="instructions" class="form-label">Instructions</label>

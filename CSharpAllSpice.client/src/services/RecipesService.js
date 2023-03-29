@@ -29,6 +29,13 @@ class RecipesService {
         AppState.recipes.unshift(res.data)
         return new Recipe(res.data)
     }
+    async removeRecipe(recipeId) {
+        const res = await api.delete(`api/recipes/${recipeId}`)
+        let i = AppState.recipes.findIndex(r => r.id == recipeId)
+        if (i != -1) {
+            AppState.recipes.splice(i, 1)
+        }
+    }
 
 }
 export const recipesService = new RecipesService()
