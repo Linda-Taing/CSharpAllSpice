@@ -16,33 +16,39 @@
                 <div class="col-md-6">
                     <p class="mb-0"><b>Instructions:</b> {{ recipe.instructions }}</p>
                     <!-- TODO: Write an edit instructions recipe -->
-                    <i @click="editInstructions" class="mdi selectable mdi-pencil-circle text-warning fs-3"></i>
-                    <div><b>Ingredients List:</b></div>
-                    <div v-for="i in ingredients">
-                        <li>{{ i.name }}</li>
-                        <li>{{ i.quantity }}
-                            <i @click="removeIngredient(i.id)" title="Delete Ingredient"
-                                class="text-danger mdi selectable fw-bold mdi-minus-circle fs-5"></i>
-                        </li>
-                    </div>
-                    <form>
-                        <div class="d-flex mt-3">
-                            <label for="ingredients" class="form-label text-dark"> </label>
-                            <input placeholder="add ingredient" v-model="editable.name" required type="text"
-                                class="form-control" id="ingredient" aria-describedby="emailHelp">
-                            <label for="quantity" class="form-label text-dark"> </label>
-                            <input placeholder="quantity" v-model="editable.quantity" required type="text"
-                                class="form-control" id="quantity" aria-describedby="emailHelp">
-                            <i @click="addIngredient(recipe.id)" title="Add Ingredient"
-                                class="mdi fw-bold fs-3 text-success mdi-plus-circle"></i>
-                            <!-- TODO: Write a delete Ingredient -->
-
-                        </div>
-                    </form>
-
-                    <!-- TODO: Write an add Ingredient -->
-
+                    <i @click="editInstructions()" title="Edit Instructions"
+                        class="mdi selectable mdi-pencil-circle text-warning fs-3"></i>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div><b>Ingredients List:</b></div>
+                        <div v-for="i in ingredients">
+                            <li>{{ i.name }}</li>
+                            <li>{{ i.quantity }}
+                                <i @click="removeIngredient(i.id)" title="Delete Ingredient"
+                                    class="text-danger mdi selectable fw-bold mdi-minus-circle fs-5"></i>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <form>
+                    <div class="d-flex mt-3">
+                        <label for="ingredients" class="form-label text-dark"> </label>
+                        <input placeholder="add ingredient" v-model="editable.name" required type="text"
+                            class="form-control" id="ingredient" aria-describedby="emailHelp">
+                        <label for="quantity" class="form-label text-dark"> </label>
+                        <input placeholder="quantity" v-model="editable.quantity" required type="text" class="form-control"
+                            id="quantity" aria-describedby="emailHelp">
+                        <i @click="addIngredient(recipe.id)" title="Add Ingredient"
+                            class="mdi fw-bold fs-3 text-success mdi-plus-circle"></i>
+                        <!-- TODO: Write a delete Ingredient -->
+
+                    </div>
+                </form>
+
+                <!-- TODO: Write an add Ingredient -->
+
+
 
             </div>
         </div>
