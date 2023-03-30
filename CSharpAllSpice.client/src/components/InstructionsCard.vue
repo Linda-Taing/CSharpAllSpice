@@ -3,8 +3,8 @@
     <div v-if="recipe" class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title text-dark fs-5" id="exampleModalLabel"> {{ recipe.title }}</h1>
-            <i @click="deleteRecipe(recipe.id)" class=" fs-3 ms-5 selectable text-danger mdi mdi-delete-forever"
-                title="Delete Recipe"></i>
+            <i v-if="account.id == recipe.creatorId" @click="deleteRecipe(recipe.id)"
+                class=" fs-3 ms-5 selectable text-danger mdi mdi-delete-forever" title="Delete Recipe"></i>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -46,9 +46,8 @@
                         </div>
                     </div>
                 </div>
-
                 <form>
-                    <div class="d-flex mt-3">
+                    <div v-if="account.id == recipe.creatorId" class="d-flex mt-3">
                         <label for="ingredients" class="form-label text-dark"> </label>
                         <input placeholder="add ingredient" v-model="editable.name" required type="text"
                             class="form-control" id="ingredient" aria-describedby="emailHelp">
@@ -57,15 +56,9 @@
                             id="quantity" aria-describedby="emailHelp">
                         <i @click="addIngredient(recipe.id)" title="Add Ingredient"
                             class="mdi fw-bold fs-3 text-success mdi-plus-circle"></i>
-                        <!-- TODO: Write a delete Ingredient -->
 
                     </div>
                 </form>
-
-                <!-- TODO: Write an add Ingredient -->
-
-
-
             </div>
         </div>
     </div>

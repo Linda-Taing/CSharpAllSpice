@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark spice-bg px-3 ">
+  <nav class="navbar navbar-expand-lg navbar-dark b px-3 ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-dark align-items-center">
         <!-- NOTE: CHANGE FONT -->
@@ -11,6 +11,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
+      <div v-if="recipes">
+        <label for="searchRecipes" class="form-label">Search Recipes:</label>
+        <input v-model="editable.search" @input="searchCategory()" type="text" id="searchRecipes" class="form-control"
+          aria-describedby="searchRecipes" name="body">
+      </div>
       <ul class="navbar-nav me-auto">
         <li>
           <!-- <router-link :to="{ name: 'About' }" class="btn text-light lighten-30 selectable text-uppercase">
@@ -18,6 +23,7 @@
           </router-link> -->
         </li>
       </ul>
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -26,9 +32,25 @@
 
 <script>
 import Login from './Login.vue'
+import { computed, ref } from 'vue';
+import { AppState } from '../AppState.js';
 export default {
   setup() {
-    return {}
+    const editable = ref({
+      search: ""
+    })
+
+    function searchCategory() {
+      setTimeout(() => {
+        AppState.recipe = AppState.allRecipes.filter(r => r.category.toLowerCase().includes(editable.value.search.toLowerCase()))
+      }, 300)
+      if (editable.value.search == "") { AppState.recipe = AppState.allRecipes, logger.log('[ARE YOU SEARCHING RECIPES?]') }
+
+    }
+    return {
+      recipes: computed(() => AppState.allRecipes),
+      searchCategory
+    }
   },
   components: { Login }
 }

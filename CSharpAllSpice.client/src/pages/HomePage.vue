@@ -28,7 +28,8 @@
   </div>
 
   <div v-if="account.id" class="d-flex justify-content-end p-3 sticky-bottom" title="Add Recipe">
-    <i data-bs-toggle="modal" data-bs-target="#test-modal" class="selectable mdi fs-1 text-primary mdi-plus-circle"></i>
+    <button class="btn btn-circle">
+      <i data-bs-toggle="modal" data-bs-target="#test-modal" class="mdi fs-1 text-primary mdi-plus-circle"></i></button>
   </div>
   <Modal id="test-modal">
     <CreateRecipeForm />
