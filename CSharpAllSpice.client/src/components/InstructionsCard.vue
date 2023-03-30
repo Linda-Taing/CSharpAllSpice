@@ -16,14 +16,26 @@
                 <div class="col-md-6">
                     <p class="mb-0"><b>Instructions:</b> {{ recipe.instructions }}</p>
                     <!-- TODO: Write an edit instructions recipe -->
-                    <form>
+                    <!-- <form>
                         <textarea v-model="editable.instructions" name="" id="" cols="30" rows="1"></textarea>
+                    </form> -->
+                    <div v-if="account.id == recipe.creatorId" class="d-flex justify-content-end">
+                        <button class="btn btn-circle"> <i @click="openEdit()" title="Edit Instructions"
+                                class="mdi selectable mdi-pencil-circle text-warning fs-3"></i></button>
+                    </div>
+                </div>
+                <div v-if="account.id == recipe.creatorId" class="d-flex justify-content-end">
+                    <form @submit.prevent="editInstruction(recipe.id)" v-if="edited">
+                        <textarea v-model="editable.instructions" class="" cols="60" rows="2" type="text"
+                            id="instructions"></textarea>
+                        <div class="d-flex justify-content-end">
+                            <button title="Save your changes!" class="btn btn-circle " type="submit"><i
+                                    class="mdi fs-3 selectable mdi-check-circle text-success"></i></button>
+                        </div>
                     </form>
-                    <i @click="editInstructions()" title="Edit Instructions"
-                        class="mdi selectable mdi-pencil-circle text-warning fs-3"></i>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div v-if="account.id == recipe.creatorId" class="col-md-12">
                         <div><b>Ingredients List:</b></div>
                         <div v-for="i in ingredients">
                             <li>{{ i.name }}</li>
@@ -34,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+
                 <form>
                     <div class="d-flex mt-3">
                         <label for="ingredients" class="form-label text-dark"> </label>
@@ -78,6 +91,7 @@ export default {
             account: computed(() => AppState.account),
             ingredients: computed(() => AppState.ingredients),
             recipe: computed(() => AppState.recipe),
+            edited: computed(() => AppState.editInstruction),
             async getInstructionsById() {
                 try {
                     await instructionsService.getInstructionsById()
@@ -117,13 +131,21 @@ export default {
                     Pop.error(error, '[delete ingredients here?]')
                 }
             },
-            async editInstructions(recipeId) {
+            async editInstruction(recipeId) {
                 try {
-                    await recipesService.editInstructions(recipeId)
+                    const editedData = editable.value
+                    await recipesService.editInstruction(recipeId, editedData)
+                    Pop.success('You have updated your ingredients!')
+                    editable.value = {}
+                    AppState.editInstruction = false
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error, '[delete ingredients here?]')
                 }
+            },
+            openEdit() {
+                AppState.editInstruction = true
+                logger.log('[Are you opening edit?]')
             }
 
 
