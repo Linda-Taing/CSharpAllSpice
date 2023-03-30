@@ -45,9 +45,9 @@ class RecipesService {
 
     async searchRecipes(searchData) {
         const res = await api.get('api/recipes', { params: searchData })
-        logger.log('[ARE YOU SEARCHING IN THE R-SERVICE?]')
+        logger.log('[ARE YOU SEARCHING IN THE R-SERVICE?]', res.data)
         AppState.search = searchData.search
-        AppState.recipes = res.data
+        AppState.recipes = res.data.map(r => new Recipe(r))
 
     }
 }
