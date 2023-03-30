@@ -1,22 +1,40 @@
 <template>
   <div v-if="account" class="container">
     <div class="row">
-      <div class="col-md-12 d-flex justify-content-evenly my-5 p-2">
-
+      <div class="col-md-4"></div>
+      <div class="col-md-4 d-flex bg-secondary elevation-2 justify-content-evenly my-5 p-2">
         <!-- NOTE: Andrew helped me with this part to make sure that I could retrieve the favorites in the all my recipes. This section I can get AllRecipes and Favorites but not drawing the MyRecipes data to console.  -->
         <!-- <router-link :to="{ name: 'Home' }">
           <button class="btn btn-secondary sm-button">Home</button>
         </router-link> -->
         <!-- <button @click="getAllRecipes()" class="btn btn-secondary sm-button">Home</button>
-        <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
-        <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button> -->
-        <button @click="changeFilterCategory(0)" class="btn btn-secondary sm-button">Home</button>
-        <button @click="changeFilterCategory(1)" class="sm-button btn btn-secondary">My Recipes</button>
-        <button @click="changeFilterCategory(2)" class="sm-button btn btn-secondary">My Favorites</button>
-
+          <button @click="getMyRecipes()" class="sm-button btn btn-secondary">My Recipes</button>
+          <button @click="getMyFavorites()" class="sm-button btn btn-secondary">My Favorites</button> -->
+        <div @click="changeFilterCategory(0)" class=" selectable fs-4">Home</div>
+        <div @click="changeFilterCategory(1)" class=" selectable fs-4">My Recipes</div>
+        <div @click="changeFilterCategory(2)" class="selectable fs-4">My Favorites</div>
       </div>
-      <div v-for="r in recipes" class="col-md-3 pb-0">
-        <RecipeCard :recipe="r" />
+      <div class="d-flex justify-content-end">
+        <div class="col-md-2">
+          <div v-if="recipes">
+            <form @submit.prevent="searchRecipes()">
+              <div class="input-group mb-5 me-5">
+                <input v-model="editable.search" type="text" class="form-control" placeholder="Search Recipes"
+                  aria-label="Search Recipes" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                  <i class="mdi mdi-magnify"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+
+        <div v-for="r in recipes" class="col-md-3 pb-0">
+          <RecipeCard :recipe="r" />
+        </div>
       </div>
     </div>
   </div>
@@ -47,6 +65,18 @@ import { favoritesService } from '../services/FavoritesService.js';
 export default {
   setup() {
     const filterCategory = ref(0);
+    const editable = ref({
+      search: ""
+    })
+
+    // function searchCategory() {
+    //   logger.log('[YOU HERE SEARCHING?]')
+    //   setTimeout(() => {
+    //     AppState.recipe = AppState.allRecipes.filter(r => r.category.toLowerCase().includes(editable.value.search.toLowerCase()))
+    //   }, 300)
+    //   if (editable.value.search == "") { AppState.recipe = AppState.allRecipes, logger.log('[ARE YOU SEARCHING RECIPES?]') }
+
+    // }
 
     async function getAllRecipes() {
       try {
@@ -83,6 +113,9 @@ export default {
       creator: computed(() => AppState.account),
 
 
+      editable,
+
+
       getAllRecipes,
       // NOTE: This is set for the filter, when filtering it would go to a blank page so I am looking for different routes.
       recipes: computed(() => {
@@ -101,17 +134,18 @@ export default {
       changeFilterCategory(category) {
         filterCategory.value = category;
       },
-      // async createRecipe() {
-      //   try {
-      //     const recipeData = editable.value
-      //     await recipesService.createRecipe(recipeData)
-      //     editable.value = {}
-      //     Pop.success('[YOU HAVE CREATED A RECIPE!]')
-      //   } catch (error) {
-      //     logger.log('[CREATE RECIPE]')
-      //     Pop.error(error.message);
-      //   }
-      // },
+
+      async searchRecipes() {
+        try {
+          let searchData = editable.value;
+          await recipesService.searchRecipes(searchData);
+          editable.value = {};
+        } catch (error) {
+          logger.error(error, '[Did you search the homepage?]');
+          Pop.error(error.message);
+        }
+      }
+
 
 
 

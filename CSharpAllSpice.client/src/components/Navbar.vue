@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark b px-3 ">
+  <nav class="navbar navbar-expand-lg navbar-dark  px-3 ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-dark align-items-center">
         <!-- NOTE: CHANGE FONT -->
@@ -11,11 +11,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <div v-if="recipes">
-        <label for="searchRecipes" class="form-label">Search Recipes:</label>
-        <input v-model="editable.search" @input="searchCategory()" type="text" id="searchRecipes" class="form-control"
-          aria-describedby="searchRecipes" name="body">
-      </div>
+      <!-- FIXME: trying to add a search bar!! -->
+      <!-- <div v-if="recipes">
+        <form @submit="searchCategory()">
+          <div class="input-group mb-3 me-3">
+            <input v-model="editable.search" required type="text" class="form-control" placeholder="Search Recipes"
+              aria-label="Search Recipes" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+              <i class="mdi mdi-magnify"></i>
+            </button>
+          </div>
+        </form>
+      </div> -->
       <ul class="navbar-nav me-auto">
         <li>
           <!-- <router-link :to="{ name: 'About' }" class="btn text-light lighten-30 selectable text-uppercase">
@@ -34,6 +41,7 @@
 import Login from './Login.vue'
 import { computed, ref } from 'vue';
 import { AppState } from '../AppState.js';
+import { logger } from '../utils/Logger.js';
 export default {
   setup() {
     const editable = ref({
@@ -41,6 +49,7 @@ export default {
     })
 
     function searchCategory() {
+      logger.log('[YOU HERE SEARCHING?]')
       setTimeout(() => {
         AppState.recipe = AppState.allRecipes.filter(r => r.category.toLowerCase().includes(editable.value.search.toLowerCase()))
       }, 300)

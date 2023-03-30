@@ -25,4 +25,5 @@ export const AppState = reactive({
   editInstruction: false,
   allRecipes: null,
   recipe: null,
+  search: null,
 })
