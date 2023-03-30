@@ -30,6 +30,20 @@ public class RecipesController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    [HttpGet("search")]
+    async public Task<ActionResult<List<Recipe>>> SearchRecipes(string search)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<Recipe> recipes = _recipesService.searchRecipes(userInfo?.Id, search);
+            return Ok(recipes);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Recipe>> Find(int id)

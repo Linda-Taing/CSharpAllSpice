@@ -58,4 +58,11 @@ public class RecipesService
 
     }
 
+    internal List<Recipe> searchRecipes(string userId, string search)
+    {
+        List<Recipe> recipes = _repo.searchRecipes(search);
+        List<Recipe> filteredRecipes = recipes.FindAll(r => r.CreatorId == userId);
+        return filteredRecipes;
+
+    }
 }

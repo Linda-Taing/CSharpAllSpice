@@ -40,6 +40,24 @@ public class RecipesRepository
         }).ToList();
         return recipes;
     }
+    internal List<Recipe> SearchRecipes(string search)
+    {
+        search = $"%{search}%";
+        string sql = @"
+        SELECT
+        rec.*,
+        acct.*
+        FROM recipes rec
+        JOIN accounts acct ON rec.creatorId = acct.id
+        Where rec.title LIKE @search OR rec.category LIKE @search OR rec.instructions LIKE @search;
+        ";
+        List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, prof) =>
+        {
+            recipe.Creator = prof;
+            return recipe;
+        }).ToList();
+        return recipes;
+    }
     internal Recipe GetOne(int id)
     {
         string sql = @"
@@ -65,6 +83,7 @@ public class RecipesRepository
         ";
         int rows = _db.Execute(sql, new { id });
     }
+
 
     internal int UpdateRecipe(Recipe update)
     {

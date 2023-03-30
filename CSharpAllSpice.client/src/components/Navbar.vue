@@ -1,9 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark  px-3 ">
+  <nav class="navbar navbar-expand-lg spice-bg  navbar-dark px-3 ">
+    <!-- <img class="spice-bg p-0" src="../assets/img/ALLSPICE.png" alt=""> -->
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-dark align-items-center">
         <!-- NOTE: CHANGE FONT -->
-        <p class="text-center">All Spice</p>
+        <p class="text-center text-light">All Spice</p>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -67,7 +68,9 @@ export default {
 
 <style scoped>
 .spice-bg {
-  background-image: url("https://media.istockphoto.com/id/1297420369/photo/herbs-and-spices-in-bowels.jpg?b=1&s=170667a&w=0&k=20&c=JcWI3qRUvL3uTO80RI6A6NKn-555vNif0ybp28Cl9Gc=");
+  background-image: url("../assets/img/ALLSPICE.png");
+  height: 200px;
+
   background-position: center;
   background-size: cover;
 }

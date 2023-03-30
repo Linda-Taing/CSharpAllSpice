@@ -43,11 +43,10 @@ class RecipesService {
         AppState.recipe = new Recipe(res.data)
     }
 
-    async searchRecipes(searchData) {
-        const res = await api.get('api/recipes', { params: searchData })
+    async searchRecipes(search) {
+        const res = await api.get(`api/recipes/search?search=${search}`)
         logger.log('[ARE YOU SEARCHING IN THE R-SERVICE?]', res.data)
-        AppState.search = searchData.search
-        AppState.recipes = res.data.map(r => new Recipe(r))
+        AppState.recipes = res.data
 
     }
 }

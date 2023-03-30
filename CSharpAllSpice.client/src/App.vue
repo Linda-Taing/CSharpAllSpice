@@ -1,5 +1,6 @@
 <template>
   <header>
+
     <Navbar />
   </header>
   <main class="bg-grade">

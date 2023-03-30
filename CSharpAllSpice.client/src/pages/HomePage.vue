@@ -19,7 +19,7 @@
           <div v-if="recipes">
             <form @submit.prevent="searchRecipes()">
               <div class="input-group mb-5 me-5">
-                <input v-model="editable.search" type="text" class="form-control" placeholder="Search Recipes"
+                <input v-model="search" type="text" class="form-control" placeholder="Search Recipes"
                   aria-label="Search Recipes" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
                   <i class="mdi mdi-magnify"></i>
@@ -65,10 +65,11 @@ import { favoritesService } from '../services/FavoritesService.js';
 export default {
   setup() {
     const filterCategory = ref(0);
-    const editable = ref({
-      search: ""
-    })
-
+    const search = ref('')
+    // NOTE: Sample of Jacobs live search bar...
+    // const editable = ref({
+    //   search: ""
+    // })
     // function searchCategory() {
     //   logger.log('[YOU HERE SEARCHING?]')
     //   setTimeout(() => {
@@ -107,13 +108,14 @@ export default {
     })
 
     return {
+      search,
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
       recipes: computed(() => AppState.recipes),
       creator: computed(() => AppState.account),
 
 
-      editable,
+      // editable,
 
 
       getAllRecipes,
@@ -137,9 +139,9 @@ export default {
 
       async searchRecipes() {
         try {
-          let searchData = editable.value;
-          await recipesService.searchRecipes(searchData);
-          editable.value = {};
+          // let searchData = editable.value;
+          await recipesService.searchRecipes(search.value);
+          // editable.value = {};
         } catch (error) {
           logger.error(error, '[Did you search the homepage?]');
           Pop.error(error.message);
