@@ -1,5 +1,4 @@
 <template>
-    <!--NOTE: NEED TO FILL OUT INFORMATION FOR RECIPE MODAL. -->
     <div v-if="recipe" class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title text-dark fs-5" id="exampleModalLabel"> {{ recipe.title }}</h1>
@@ -15,10 +14,6 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
                     <p class="mb-0"><b>Instructions:</b> {{ recipe.instructions }}</p>
-                    <!-- TODO: Write an edit instructions recipe -->
-                    <!-- <form>
-                        <textarea v-model="editable.instructions" name="" id="" cols="30" rows="1"></textarea>
-                    </form> -->
                     <div v-if="account.id == recipe.creatorId" class="d-flex justify-content-end">
                         <button class="btn btn-circle"> <i @click="openEdit()" title="Edit Instructions"
                                 class="mdi selectable mdi-pencil-circle text-warning fs-3"></i></button>
