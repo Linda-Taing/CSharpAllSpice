@@ -32,7 +32,6 @@
             <div class="rounded elevation-1 frosted-card-cat ms-2 mt-0">
                 <p class="fs-6 my-0 py-0 text-center text-light">{{ recipe.category }}</p>
             </div>
-
         </div>
     </div>
 </template>
