@@ -8,7 +8,7 @@ class FavoritesService {
 
 
     async getMyFavorites() {
-        // NOTE: originally had this function routed from AuthService using the PostItVue. but not sure again how to tie all back to the HOMEPAGE.
+
         const res = await api.get('account/favorites')
         logger.log('[GETTING MY FAVORITES]', res.data)
         AppState.favorites = res.data.map(r => new Recipe(r))
