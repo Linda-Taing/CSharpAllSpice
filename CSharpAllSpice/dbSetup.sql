@@ -1,3 +1,4 @@
+-- Active: 1683149088818@@54.187.169.182@3306@linda_db
 
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
