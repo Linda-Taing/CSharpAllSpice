@@ -58,7 +58,7 @@ DROP TABLE ingredients;
 INSERT INTO ingredients
 (name, quantity, recipeId, creatorId)
 VALUES
-('Toasted Bread', '2 slices of bread and heaps of butter', '1', '640538132afd6827951b3197');
+('Toasted Bread', '2 slices of bread and heaps of butter', '2', '640538132afd6827951b3197');
 
 SELECT
 *
@@ -84,7 +84,7 @@ DROP TABLE favorites;
 INSERT INTO favorites
 (`recipeId`, `accountId`)
 VALUES
-(1, '640538132afd6827951b3197');
+(2, '640538132afd6827951b3197');
 
 -- GETTING FAVORITES FOR ACCOUNT--
 SELECT
